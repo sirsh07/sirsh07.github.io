@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>YOUR NAME — Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="YOUR NAME — Researcher / Developer Portfolio" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+  <meta property="og:title" content="YOUR NAME — Portfolio" />
+  <meta property="og:description" content="Brief intro about you." />
+  <meta property="og:type" content="website" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0f172a;
+      --muted: #64748b;
+      --card: #f1f5f9;
+      --accent: #2563eb;
+      --link: #1d4ed8;
+      --border: #e5e7eb;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0f19;
+        --fg: #e5e7eb;
+        --muted: #94a3b8;
+        --card: #111827;
+        --accent: #60a5fa;
+        --link: #93c5fd;
+        --border: #1f2937;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--fg);
+    }
+    .container { max-width: 880px; margin: 0 auto; padding: 24px; }
+    header { padding: 40px 0 24px; border-bottom: 1px solid var(--border); }
+    h1 { margin: 0 0 8px; font-size: clamp(28px, 3.6vw, 40px); line-height: 1.2; }
+    .tagline { color: var(--muted); margin: 0; }
+    nav { margin-top: 16px; display: flex; gap: 16px; flex-wrap: wrap; }
+    nav a {
+      text-decoration: none; color: var(--link); border: 1px solid var(--border);
+      padding: 8px 12px; border-radius: 999px;
+    }
+    section { padding: 28px 0; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 18px; margin: 12px 0;
+    }
+    h2 { margin: 0 0 12px; font-size: 20px; }
+    ul { margin: 0; padding-left: 18px; }
+    footer { padding: 28px 0 40px; color: var(--muted); border-top: 1px solid var(--border); font-size: 14px; }
+    a { color: var(--link); }
+    .btn {
+      display: inline-block; margin-top: 10px; text-decoration: none; color: white;
+      background: var(--accent); padding: 10px 14px; border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>YOUR NAME</h1>
+      <p class="tagline">YOUR ROLE — short one‑liner about what you do.</p>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#pubs">Publications</a>
+        <a href="#contact">Contact</a>
+        <a href="https://github.com/YOUR_GITHUB" target="_blank" rel="noopener">GitHub</a>
+        <!-- Add more: LinkedIn, Google Scholar, CV, etc. -->
+      </nav>
+    </header>
+
+    <section id="about">
+      <div class="card">
+        <h2>About</h2>
+        <p>
+          One or two sentences about you. Mention your interests, lab/company, and what you’re currently working on.
+        </p>
+        <a class="btn" href="YOUR_CV_LINK.pdf">Download CV</a>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="card">
+        <h2>Projects</h2>
+        <ul>
+          <li><strong>Project Title</strong> — one‑line description. <a href="https://github.com/YOUR_GITHUB/REPO">Code</a> · <a href="#">Demo</a></li>
+          <li><strong>Another Project</strong> — quick blurb. <a href="#">Paper</a> · <a href="#">Page</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="pubs">
+      <div class="card">
+        <h2>Publications</h2>
+        <ul>
+          <li><strong>Paper Title</strong>, Venue YYYY. <a href="#">PDF</a> · <a href="#">Project Page</a> · <a href="#">BibTeX</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="card">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:YOUR_EMAIL@example.com">YOUR_EMAIL@example.com</a></p>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> YOUR NAME. Built with plain HTML/CSS. 
+    </footer>
+  </div>
+
+  <script>
+    // tiny convenience: keep footer year current
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
