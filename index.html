@@ -1,125 +1,281 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>YOUR NAME — Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="YOUR NAME — Researcher / Developer Portfolio" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
-  <meta property="og:title" content="YOUR NAME — Portfolio" />
-  <meta property="og:description" content="Brief intro about you." />
-  <meta property="og:type" content="website" />
+  <title>Sirshapan (Sirsh) Mitra — Portfolio</title>
+  <meta name="description" content="Sirshapan Mitra — PhD student in Computer Vision (CRCV, UCF). Research in 3D Vision, Diffusion, Gaussian Splatting, VLMs, Semi-supervised learning, Gait Recognition, Person ReID." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Tailwind via CDN (JIT) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          boxShadow: {
+            glow: '0 0 0 2px rgba(59,130,246,.2), 0 8px 30px rgba(0,0,0,.08)'
+          }
+        }
+      },
+      darkMode: 'class'
+    }
+  </script>
   <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #0f172a;
-      --muted: #64748b;
-      --card: #f1f5f9;
-      --accent: #2563eb;
-      --link: #1d4ed8;
-      --border: #e5e7eb;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0b0f19;
-        --fg: #e5e7eb;
-        --muted: #94a3b8;
-        --card: #111827;
-        --accent: #60a5fa;
-        --link: #93c5fd;
-        --border: #1f2937;
-      }
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: var(--bg);
-      color: var(--fg);
-    }
-    .container { max-width: 880px; margin: 0 auto; padding: 24px; }
-    header { padding: 40px 0 24px; border-bottom: 1px solid var(--border); }
-    h1 { margin: 0 0 8px; font-size: clamp(28px, 3.6vw, 40px); line-height: 1.2; }
-    .tagline { color: var(--muted); margin: 0; }
-    nav { margin-top: 16px; display: flex; gap: 16px; flex-wrap: wrap; }
-    nav a {
-      text-decoration: none; color: var(--link); border: 1px solid var(--border);
-      padding: 8px 12px; border-radius: 999px;
-    }
-    section { padding: 28px 0; }
-    .card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-      padding: 18px; margin: 12px 0;
-    }
-    h2 { margin: 0 0 12px; font-size: 20px; }
-    ul { margin: 0; padding-left: 18px; }
-    footer { padding: 28px 0 40px; color: var(--muted); border-top: 1px solid var(--border); font-size: 14px; }
-    a { color: var(--link); }
-    .btn {
-      display: inline-block; margin-top: 10px; text-decoration: none; color: white;
-      background: var(--accent); padding: 10px 14px; border-radius: 10px;
-    }
+    /* Fancy gradient ring for avatar */
+    .avatar-ring { background: conic-gradient(#60a5fa, #a78bfa, #34d399, #60a5fa); }
+    .backdrop-blur-md { backdrop-filter: blur(12px); }
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
   </style>
+  <!-- OpenGraph / Twitter -->
+  <meta property="og:title" content="Sirshapan (Sirsh) Mitra — Portfolio" />
+  <meta property="og:description" content="PhD student in Computer Vision at UCF CRCV. 3D Vision, Diffusion, Gaussian Splatting, Gait." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/sirsh.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- Favicon (optional). Place a file at /assets/favicon.png -->
+  <link rel="icon" href="assets/favicon.png" />
+  <script>
+    // Theme persistence
+    const themeStorageKey = 'theme';
+    const setTheme = t => { document.documentElement.classList.toggle('dark', t === 'dark'); localStorage.setItem(themeStorageKey, t) };
+    (function initTheme(){
+      const stored = localStorage.getItem(themeStorageKey);
+      if(stored){ setTheme(stored); }
+      else { setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+    })();
+  </script>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <h1>YOUR NAME</h1>
-      <p class="tagline">YOUR ROLE — short one‑liner about what you do.</p>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#pubs">Publications</a>
-        <a href="#contact">Contact</a>
-        <a href="https://github.com/YOUR_GITHUB" target="_blank" rel="noopener">GitHub</a>
-        <!-- Add more: LinkedIn, Google Scholar, CV, etc. -->
-      </nav>
-    </header>
+<body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+  <!-- Floating theme toggle -->
+  <button id="themeToggle" title="Toggle theme" class="fixed z-50 top-4 right-4 p-2 rounded-full shadow-glow bg-white/70 dark:bg-slate-900/70 backdrop-blur-md hover:scale-105 transition">
+    <svg id="sun" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364-1.414 1.414M7.05 16.95l-1.414 1.414m12.728 0-1.414-1.414M7.05 7.05 5.636 5.636M12 8.25A3.75 3.75 0 1 1 8.25 12 3.75 3.75 0 0 1 12 8.25Z"/></svg>
+    <svg id="moon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 dark:hidden" viewBox="0 0 24 24" fill="currentColor"><path d="M21.75 15.5A9.75 9.75 0 1 1 8.5 2.25 8.999 8.999 0 0 0 21.75 15.5Z"/></svg>
+  </button>
 
-    <section id="about">
-      <div class="card">
-        <h2>About</h2>
-        <p>
-          One or two sentences about you. Mention your interests, lab/company, and what you’re currently working on.
-        </p>
-        <a class="btn" href="YOUR_CV_LINK.pdf">Download CV</a>
+  <!-- Header / Hero -->
+  <header class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10 opacity-[0.08] dark:opacity-[0.12]" aria-hidden>
+      <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 600">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#60a5fa"/>
+            <stop offset="50%" stop-color="#a78bfa"/>
+            <stop offset="100%" stop-color="#34d399"/>
+          </linearGradient>
+        </defs>
+        <path d="M0,300 C300,200 400,400 700,300 C950,230 1000,330 1200,300 L1200,600 L0,600 Z" fill="url(#g)"/>
+      </svg>
+    </div>
+
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
+      <a href="#top" class="font-semibold text-lg tracking-tight">Sirshapan Mitra</a>
+      <div class="hidden sm:flex gap-6 font-medium">
+        <a href="#about" class="hover:opacity-80">About</a>
+        <a href="#publications" class="hover:opacity-80">Publications</a>
+        <a href="#projects" class="hover:opacity-80">Projects</a>
+        <a href="#experience" class="hover:opacity-80">Experience</a>
+        <a href="#education" class="hover:opacity-80">Education</a>
+        <a href="#contact" class="hover:opacity-80">Contact</a>
+      </div>
+    </nav>
+
+    <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 grid md:grid-cols-3 gap-8 items-center">
+      <!-- Avatar -->
+      <div class="md:order-last flex justify-center">
+        <!-- Replace assets/sirsh.jpg with your photo filename. Recommended: 640x640 square -->
+        <div class="relative p-[3px] rounded-full avatar-ring shadow-glow">
+          <img src="assets/sirsh.jpg" alt="Photo of Sirshapan Mitra" class="w-44 h-44 md:w-56 md:h-56 rounded-full object-cover bg-slate-200 dark:bg-slate-800"/>
+        </div>
+      </div>
+
+      <!-- Intro text -->
+      <div class="md:col-span-2">
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Sirshapan (Sirsh) Mitra</h1>
+        <p class="mt-3 text-lg text-slate-600 dark:text-slate-300">PhD Student, Computer Vision — <a class="underline decoration-dotted hover:opacity-80" href="https://www.crcv.ucf.edu/" target="_blank" rel="noreferrer">CRCV, University of Central Florida</a></p>
+        <p class="mt-4 max-w-3xl leading-relaxed text-slate-700 dark:text-slate-300">I work at the intersection of <strong>3D Vision</strong>, <strong>Diffusion Models</strong>, <strong>Gaussian Splatting</strong>, and <strong>Vision-Language Models</strong>, with applications to <strong>Gait Recognition</strong> and <strong>Person Re-ID</strong>. I enjoy building methods that generalize under limited labels and tough cross-view settings.</p>
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800">3D Vision</span>
+          <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Diffusion</span>
+          <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Gaussian Splatting</span>
+          <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800">VLMs</span>
+          <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Semi-supervised Learning</span>
+          <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Gait</span>
+        </div>
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <a href="mailto:sirshapan07rivu@gmail.com" class="px-4 py-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-glow">Email</a>
+          <a href="https://www.linkedin.com/in/sirshapan/" target="_blank" rel="noreferrer" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-glow">LinkedIn</a>
+          <a href="https://github.com/sirsh07" target="_blank" rel="noreferrer" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-glow">GitHub</a>
+          <a href="https://scholar.google.com/citations?user=iGUWpfkAAAAJ&hl=en&oi=ao" target="_blank" rel="noreferrer" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-glow">Scholar</a>
+          <a href="assets/Sirshapan_Mitra_Resume.pdf" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-glow">Résumé</a>
+        </div>
       </div>
     </section>
+  </header>
 
-    <section id="projects">
-      <div class="card">
-        <h2>Projects</h2>
-        <ul>
-          <li><strong>Project Title</strong> — one‑line description. <a href="https://github.com/YOUR_GITHUB/REPO">Code</a> · <a href="#">Demo</a></li>
-          <li><strong>Another Project</strong> — quick blurb. <a href="#">Paper</a> · <a href="#">Page</a></li>
-        </ul>
+  <!-- Publications -->
+  <section id="publications" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="flex items-baseline justify-between">
+      <h2 class="text-2xl font-bold">Selected Publications</h2>
+    </div>
+    <ol class="mt-6 space-y-5 list-decimal list-inside">
+      <li>
+        <span class="font-semibold">Stable Mean Teacher for Semi-supervised Video Action Detection</span> — AAAI 2025 (accepted).<br/>
+        <span class="text-sm text-slate-600 dark:text-slate-400">Akash Kumar, <strong>Sirshapan Mitra</strong>, Yogesh S. Rawat</span>
+      </li>
+      <li>
+        <span class="font-semibold">GaitCrafter: Diffusion Model for Biometric-Preserving Gait Synthesis</span> — ICCV Workshops 2025 (accepted).<br/>
+        <span class="text-sm text-slate-600 dark:text-slate-400"><strong>Sirshapan Mitra</strong>, Yogesh S. Rawat</span>
+      </li>
+    </ol>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold">Major Research Projects</h2>
+    <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card 1 WRIVA -->
+      <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/40 hover:shadow-glow transition">
+        <h3 class="font-semibold">WRIVA — Walk-through Rendering from Images of Varying Altitude (IARPA)</h3>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Novel view synthesis using Gaussian Splatting.</p>
+        <div class="mt-3 flex flex-wrap gap-2 text-xs">
+          <span class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Gaussian Splatting</span>
+          <span class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Novel View</span>
+        </div>
+      </article>
+
+      <!-- Card 2 BRIAR -->
+      <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/40 hover:shadow-glow transition">
+        <h3 class="font-semibold">BRIAR — Biometric Recognition and Identification at Altitude and Range (IARPA)</h3>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Worked on large-scale biometric data; team ranked <strong>2nd/7</strong>.</p>
+        <div class="mt-3 flex flex-wrap gap-2 text-xs">
+          <span class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Biometrics</span>
+          <span class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Evaluation</span>
+        </div>
+      </article>
+
+      <!-- Card 3 Cross-View GS -->
+      <article class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/60 dark:bg-slate-900/40 hover:shadow-glow transition">
+        <h3 class="font-semibold">Cross-View Gaussian Splatting</h3>
+        <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Ground-view synthesis from sparse aerial/ground inputs with diffusion control.</p>
+        <div class="mt-3 flex flex-wrap gap-2 text-xs">
+          <span class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">ControlNet</span>
+          <span class="px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Stable Diffusion</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold">Experience</h2>
+    <div class="mt-6 grid md:grid-cols-2 gap-6">
+      <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold">University of Central Florida — CRCV Lab</h3>
+          <span class="text-xs text-slate-500">Sep 2022 – May 2024</span>
+        </div>
+        <p class="text-sm mt-2 text-slate-600 dark:text-slate-400">Research Assistant • Limited-label gait recognition, vision transformers, diffusion; cross-view Gaussian splatting; human action/motion generation.</p>
       </div>
-    </section>
-
-    <section id="pubs">
-      <div class="card">
-        <h2>Publications</h2>
-        <ul>
-          <li><strong>Paper Title</strong>, Venue YYYY. <a href="#">PDF</a> · <a href="#">Project Page</a> · <a href="#">BibTeX</a></li>
-        </ul>
+      <div class="p-5 rounded-2xl border border-slate-200 dark:border-slate-800">
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold">DRDO, India</h3>
+          <span class="text-xs text-slate-500">Sep 2019 – Jan 2022</span>
+        </div>
+        <p class="text-sm mt-2 text-slate-600 dark:text-slate-400">Research Intern • Robustness in phoneme production using HMMs and deep learning (wav2vec) with TIMIT.</p>
       </div>
-    </section>
+    </div>
 
-    <section id="contact">
-      <div class="card">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:YOUR_EMAIL@example.com">YOUR_EMAIL@example.com</a></p>
+    <details class="mt-4">
+      <summary class="cursor-pointer text-slate-600 dark:text-slate-300">More details</summary>
+      <ul class="mt-2 list-disc ml-6 text-sm text-slate-600 dark:text-slate-400">
+        <li>Benchmarked multiple gait datasets and models; analyzed generalization and robustness.</li>
+        <li>Used diffusion to synthesize gait while preserving identity-related characteristics.</li>
+      </ul>
+    </details>
+  </section>
+
+  <!-- Education -->
+  <section id="education" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-2xl font-bold">Education</h2>
+    <ul class="mt-6 space-y-3">
+      <li>
+        <span class="font-semibold">PhD in Computer Science</span>, University of Central Florida — <span class="text-slate-600 dark:text-slate-400">2024–Present</span>
+        <div class="text-sm text-slate-600 dark:text-slate-400">Research: 3D Reasoning and Planning using AI Models</div>
+      </li>
+      <li>
+        <span class="font-semibold">MS in Computer Science</span>, University of Central Florida — <span class="text-slate-600 dark:text-slate-400">2022–2024</span>
+        <div class="text-sm text-slate-600 dark:text-slate-400">Thesis: Semi-Supervised Gait Recognition (GPA 3.93/4)</div>
+      </li>
+      <li>
+        <span class="font-semibold">B.E., Civil Engineering</span>, Jadavpur University — <span class="text-slate-600 dark:text-slate-400">2017–2021</span>
+        <div class="text-sm text-slate-600 dark:text-slate-400">GPA 8.35/4</div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- All publications expandable -->
+  <section id="all-pubs" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <details open class="bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 rounded-2xl p-5">
+      <summary class="cursor-pointer font-semibold">Full Publication List</summary>
+      <ol class="mt-4 list-decimal list-inside space-y-2 text-sm leading-relaxed">
+        <li>Akash Kumar, <strong>Sirshapan Mitra</strong>, Yogesh S. Rawat. <em>Stable Mean Teacher for Semi-supervised Video Action Detection</em>. AAAI 2025 (accepted).</li>
+        <li><strong>Sirshapan Mitra</strong>, Yogesh S. Rawat. <em>GaitCrafter: Diffusion Model for Biometric-Preserving Gait Synthesis</em>. ICCV Workshops 2025 (accepted).</li>
+        <li><strong>Sirshapan Mitra</strong>. <em>Semi-Supervised Gait Recognition</em>. MS Thesis, 2024.</li>
+        <li>Suparnakanti Das, Trishita Dhara, <strong>Sirshapan Mitra</strong>, Sudip Kumar Naskar. <em>Understanding the Robustness in Phoneme Production Mechanism in English and Bengali</em>. ICDCN 2022, pp. 273–277.</li>
+      </ol>
+    </details>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="rounded-3xl border border-slate-200 dark:border-slate-800 p-8 text-center bg-white/60 dark:bg-slate-900/40">
+      <h2 class="text-2xl font-bold">Get in touch</h2>
+      <p class="mt-2 text-slate-600 dark:text-slate-400">Open to collaborations and research internships.</p>
+      <div class="mt-4 flex justify-center gap-4">
+        <a class="underline decoration-dotted" href="mailto:sirshapan07rivu@gmail.com">sirshapan07rivu@gmail.com</a>
+        <span class="opacity-50">•</span>
+        <a class="underline decoration-dotted" href="https://www.linkedin.com/in/sirshapan/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <span class="opacity-50">•</span>
+        <a class="underline decoration-dotted" href="https://github.com/sirsh07" target="_blank" rel="noreferrer">GitHub</a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer>
-      © <span id="year"></span> YOUR NAME. Built with plain HTML/CSS. 
-    </footer>
-  </div>
+  <footer class="py-10 text-center text-sm text-slate-500">
+    <p>© <span id="year"></span> Sirshapan Mitra • Built with Tailwind • <a class="underline decoration-dotted" href="#top">Back to top</a></p>
+  </footer>
 
   <script>
-    // tiny convenience: keep footer year current
+    // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+    // Toggle theme
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const dark = document.documentElement.classList.contains('dark');
+      setTheme(dark ? 'light' : 'dark');
+    });
+  </script>
+
+  <!-- JSON-LD for richer search result -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sirshapan Mitra",
+      "alternateName": "Sirsh",
+      "affiliation": {"@type": "CollegeOrUniversity", "name": "University of Central Florida"},
+      "jobTitle": "PhD Student",
+      "url": "https://sirsh07.github.io/",
+      "email": "mailto:sirshapan07rivu@gmail.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/sirshapan/",
+        "https://github.com/sirsh07",
+        "https://scholar.google.com/citations?user=iGUWpfkAAAAJ&hl=en&oi=ao"
+      ]
+    }
   </script>
 </body>
 </html>
