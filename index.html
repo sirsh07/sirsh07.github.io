@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sirshapan (Sirsh) Mitra — Portfolio</title>
   <meta name="description" content="Sirshapan Mitra — PhD student in Computer Vision (CRCV, UCF). Research in 3D Vision, Diffusion, Gaussian Splatting, VLMs, Semi-supervised learning, Gait Recognition, Person ReID." />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -49,6 +52,9 @@
     })();
   </script>
 </head>
+
+
+
 <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
   <!-- Floating theme toggle -->
   <button id="themeToggle" title="Toggle theme" class="fixed z-50 top-4 right-4 p-2 rounded-full shadow-glow bg-white/70 dark:bg-slate-900/70 backdrop-blur-md hover:scale-105 transition">
@@ -58,7 +64,7 @@
 
   <!-- Header / Hero -->
   <header class="relative overflow-hidden">
-    <div class="absolute inset-0 -z-10 opacity-[0.08] dark:opacity-[0.12]" aria-hidden>
+    <!-- <div class="absolute inset-0 -z-10 opacity-[0.08] dark:opacity-[0.12]" aria-hidden>
       <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 600">
         <defs>
           <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
@@ -69,7 +75,7 @@
         </defs>
         <path d="M0,300 C300,200 400,400 700,300 C950,230 1000,330 1200,300 L1200,600 L0,600 Z" fill="url(#g)"/>
       </svg>
-    </div>
+    </div> -->
 
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
       <a href="#top" class="font-semibold text-lg tracking-tight">Sirshapan Mitra</a>
@@ -85,28 +91,34 @@
 
     <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 grid md:grid-cols-3 gap-8 items-center">
       <!-- Avatar -->
-      <div class="md:order-last flex justify-center">
-        <!-- Replace assets/sirsh.jpg with your photo filename. Recommended: 640x640 square -->
+
+      <div class="md:order-last flex flex-col items-center justify-center">
         <div class="relative p-[3px] rounded-full avatar-ring shadow-glow">
-          <img src="assets/sirsh.jpg" alt="Photo of Sirshapan Mitra" class="w-44 h-44 md:w-56 md:h-56 rounded-full object-cover bg-slate-200 dark:bg-slate-800"/>
+          <img src="assets/sirsh.jpg" alt="Photo of Sirshapan Mitra" class="w-44 h-44 md:w-72 md:h-72 rounded-full object-cover bg-slate-200 object-top dark:bg-slate-800"/>
         </div>
+        <!-- ✨ Quote added below image -->
+        <p class="mt-4 text-center text-sm text-slate-500 dark:text-slate-400 italic">
+          ✨ “Somewhere, something incredible is waiting to be known.” — Sharon Begley ✨
+        </p>
       </div>
+
 
       <!-- Intro text -->
       <div class="md:col-span-2">
         <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Sirshapan (Sirsh) Mitra</h1>
         <p class="mt-3 text-lg text-slate-600 dark:text-slate-300">PhD Student, Computer Vision — <a class="underline decoration-dotted hover:opacity-80" href="https://www.crcv.ucf.edu/" target="_blank" rel="noreferrer">CRCV, University of Central Florida</a></p>
-        <p class="mt-4 max-w-3xl leading-relaxed text-slate-700 dark:text-slate-300">I work at the intersection of <strong>3D Vision</strong>, <strong>Diffusion Models</strong>, <strong>Gaussian Splatting</strong>, and <strong>Vision-Language Models</strong>, with applications to <strong>Gait Recognition</strong> and <strong>Person Re-ID</strong>. I enjoy building methods that generalize under limited labels and tough cross-view settings.</p>
-        <div class="mt-6 flex flex-wrap gap-2">
+        <!-- <p class="mt-4 max-w-3xl leading-relaxed text-slate-700 dark:text-slate-300">I work at the intersection of <strong>3D Vision</strong>, <strong>Diffusion Generative Models</strong>, and <strong>Vision-Language Models</strong>. My research experience spans <strong>Gaussian Splatting</strong>, <strong>Diffusion Models</strong>, <strong>Gait Recognition</strong>, <strong>Biometrics</strong>, and <strong>Limited-Label Learning</strong>.</p> -->
+        <p class="mt-4 max-w-3xl leading-relaxed text-slate-700 dark:text-slate-300">I am a 2nd year PhD student at CRCV Lab at University of Central Florida in Orlando, USA. I work at the intersection of <strong>3D Vision</strong>, <strong>Diffusion Generative Models</strong>, and <strong>Vision-Language Models</strong>. My research experience spans <strong>Gaussian Splatting</strong>, <strong>Diffusion Models</strong>, <strong>Gait Recognition</strong>, <strong>Biometrics</strong>, and <strong>Limited-Label Learning</strong>.</p>
+        <!-- <div class="mt-6 flex flex-wrap gap-2">
           <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800">3D Vision</span>
           <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Diffusion</span>
           <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Gaussian Splatting</span>
           <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800">VLMs</span>
           <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Semi-supervised Learning</span>
           <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800">Gait</span>
-        </div>
+        </div> -->
         <div class="mt-6 flex flex-wrap items-center gap-3">
-          <a href="mailto:sirshapan07rivu@gmail.com" class="px-4 py-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-glow">Email</a>
+          <!-- <a href="mailto:sirshapan07rivu@gmail.com" class="px-4 py-2 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 shadow-glow">Email</a> -->
           <a href="https://www.linkedin.com/in/sirshapan/" target="_blank" rel="noreferrer" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-glow">LinkedIn</a>
           <a href="https://github.com/sirsh07" target="_blank" rel="noreferrer" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-glow">GitHub</a>
           <a href="https://scholar.google.com/citations?user=iGUWpfkAAAAJ&hl=en&oi=ao" target="_blank" rel="noreferrer" class="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:shadow-glow">Scholar</a>
@@ -204,15 +216,14 @@
     <ul class="mt-6 space-y-3">
       <li>
         <span class="font-semibold">PhD in Computer Science</span>, University of Central Florida — <span class="text-slate-600 dark:text-slate-400">2024–Present</span>
-        <div class="text-sm text-slate-600 dark:text-slate-400">Research: 3D Reasoning and Planning using AI Models</div>
+        <div class="text-sm text-slate-600 dark:text-slate-400">Research: Reasoning, Understanding and Planning in 3D Vision</div>
       </li>
       <li>
         <span class="font-semibold">MS in Computer Science</span>, University of Central Florida — <span class="text-slate-600 dark:text-slate-400">2022–2024</span>
         <div class="text-sm text-slate-600 dark:text-slate-400">Thesis: Semi-Supervised Gait Recognition (GPA 3.93/4)</div>
       </li>
       <li>
-        <span class="font-semibold">B.E., Civil Engineering</span>, Jadavpur University — <span class="text-slate-600 dark:text-slate-400">2017–2021</span>
-        <div class="text-sm text-slate-600 dark:text-slate-400">GPA 8.35/4</div>
+        <span class="font-semibold">B.E., Civil Engineering</span>, Jadavpur University — <span class="text-slate-600 dark:text-slate-400">2017–2021</span> (GPA 8.35/10)
       </li>
     </ul>
   </section>
@@ -246,7 +257,7 @@
   </section>
 
   <footer class="py-10 text-center text-sm text-slate-500">
-    <p>© <span id="year"></span> Sirshapan Mitra • Built with Tailwind • <a class="underline decoration-dotted" href="#top">Back to top</a></p>
+    <p>© <span id="year"></span> Sirshapan Mitra • <a class="underline decoration-dotted" href="#top">Back to top</a></p>
   </footer>
 
   <script>
