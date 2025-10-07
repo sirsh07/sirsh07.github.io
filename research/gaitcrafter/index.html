@@ -24,7 +24,8 @@
     }
     a{color:var(--link); text-decoration:none}
     a:hover{text-decoration:underline}
-    .wrap{max-width:980px; margin:0 auto; padding:28px}
+    <!-- .wrap{max-width:980px; margin:0 auto; padding:28px} -->
+    .wrap{max-width: 1440px; padding:28px 48px;}
 
     header{padding:32px 0 12px; border-bottom:1px solid var(--border); position:relative}
     h1{margin:0 0 6px; font-size:clamp(28px,3.6vw,42px); line-height:1.2}
@@ -62,10 +63,10 @@
     .result-block h3{margin:0 0 10px; font-size:18px}
     .result-block .media{
       border:1px solid var(--border); border-radius:10px; overflow:hidden;
-      background:#000; display:block; width:100%; aspect-ratio:16/9;
+      background:#000; display:block; width:100%; aspect-ratio:auto;
     }
     .result-block img, .result-block video{
-      display:block; width:100%; height:100%; object-fit:contain; background:#000
+      display:block; width:100%; height:100%; object-fit:cover; background:#000
     }
     .result-block figcaption{color:var(--muted); font-size:14px; margin-top:8px}
     .grid-2{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px}
@@ -102,6 +103,16 @@
       </div>
     </section>
 
+    <section id="method">
+      <div class="card">
+        <h2>Method Diagram</h2>
+        <figure class="result-block" id="res-method">
+          <img class="media" src="images/main.png" alt="GaitCrafter Method Diagram">
+          <figcaption>Overview of the GaitCrafter framework: diffusion-based generation with controllable covariates and identity consistency.</figcaption>
+        </figure>
+      </div>
+    </section>
+
     <section id="results">
       <div class="card">
         <h2>Results</h2>
@@ -109,28 +120,31 @@
         <!-- 1) Generated Gait Sequences -->
         <figure class="result-block" id="res-generated">
           <h3>1) Generated Gait Sequences (30-frame cycles)</h3>
-          <div class="grid-2">
-            <video class="media" autoplay muted loop playsinline poster="images/fig1_placeholder.png">
-              <source src="videos/generated_id1.mp4" type="video/mp4">
-            </video>
-            <video class="media" autoplay muted loop playsinline poster="images/fig1_placeholder.png">
+          <div class="grid-1">
+            <!-- <video class="media" autoplay muted loop playsinline poster="images/fig1_placeholder.png">
+              <source src="videos/consistent30frames_1.gif" type="video/gif">
+            </video> -->
+            <img src="videos/consistent30frames_1.gif" alt="Animation" class="media" />
+            <!-- <video class="media" autoplay muted loop playsinline poster="images/fig1_placeholder.png">
               <source src="videos/generated_id2.mp4" type="video/mp4">
-            </video>
+            </video> -->
           </div>
           <figcaption>Temporally consistent sequences preserving gait structure across identities.</figcaption>
-          <div class="note">Place videos in <code>research/gaitcrafter/videos/</code> and update paths.</div>
+          <!-- <div class="note">Place videos in <code>research/gaitcrafter/videos/</code> and update paths.</div> -->
         </figure>
 
         <!-- 2) Covariate Control -->
         <figure class="result-block" id="res-covariates">
           <h3>2) Controllable Covariates (View / Clothing / Baggage)</h3>
           <div class="grid-2">
-            <video class="media" autoplay muted loop playsinline poster="images/fig4_placeholder.png">
+            <!-- <video class="media" autoplay muted loop playsinline poster="images/fig4_placeholder.png">
               <source src="videos/idX_view_control.mp4" type="video/mp4">
-            </video>
-            <video class="media" autoplay muted loop playsinline poster="images/fig4_placeholder.png">
+            </video> -->
+            <img src="videos/controllable_1.gif" alt="Animation" class="media" />
+            <!-- <video class="media" autoplay muted loop playsinline poster="images/fig4_placeholder.png">
               <source src="videos/idX_clothes_bag_control.mp4" type="video/mp4">
-            </video>
+            </video> -->
+            <img src="videos/controllable_2.gif" alt="Animation" class="media" />
           </div>
           <figcaption>Consistent identity with controlled viewpoint and attire/carrying conditions.</figcaption>
         </figure>
@@ -138,14 +152,14 @@
         <!-- 3) Quantitative Results (Table 1) -->
         <figure class="result-block" id="res-table1">
           <h3>3) Quantitative Results (CASIA-B, 100%)</h3>
-          <img class="media" src="images/table1.png" alt="Table 1: Impact of synthetic data on recognition performance">
+          <img class="media" src="images/scores1.png" alt="Table 1: Impact of synthetic data on recognition performancewith 100\% labeled data. $O$ means Original data, $O_D$ means diffusion generated original data and $O_N$ means diffusion generated novel data.">
           <figcaption>Novel IDs give larger gains than only increasing samples per existing ID.</figcaption>
         </figure>
 
         <!-- 4) Open-Set (Table 2) -->
         <figure class="result-block" id="res-table2">
           <h3>4) Open-Set (20% IDs)</h3>
-          <img class="media" src="images/table2.png" alt="Table 2: Open-set with 20% IDs">
+          <img class="media" src="images/scores2.png" alt="Table 2: Open-set with 20% IDs">
           <figcaption>Adding synthetic novel IDs improves performance, notably in CL condition.</figcaption>
         </figure>
 
@@ -153,8 +167,8 @@
         <figure class="result-block" id="res-tsne">
           <h3>5) Identity Preservation & Novel IDs (t-SNE)</h3>
           <div class="grid-2">
-            <img class="media" src="images/tsne_known.png" alt="t-SNE: real vs synthetic for known IDs">
-            <img class="media" src="images/tsne_novel.png" alt="t-SNE: known vs novel IDs">
+            <img class="media" src="images/tsne1.png" alt="t-SNE: real vs synthetic for known IDs">
+            <img class="media" src="images/tsne2.png" alt="t-SNE: known vs novel IDs">
           </div>
           <figcaption>Synthetic samples co-cluster with real counterparts; mixed tokens yield distinct novel clusters.</figcaption>
         </figure>
@@ -162,16 +176,14 @@
         <!-- 6) Reverse Process -->
         <figure class="result-block" id="res-reverse">
           <h3>6) Reverse Diffusion Process</h3>
-          <img class="media" src="images/reverse_process.png" alt="Reverse diffusion process from noise to silhouettes">
+          <img class="media" src="images/denoise.png" alt="Reverse diffusion process from noise to silhouettes">
           <figcaption>Gaussian noise → clean bimodal silhouette distribution across timesteps.</figcaption>
         </figure>
 
         <!-- 7) Multi-seed Variants -->
         <figure class="result-block" id="res-multiseed">
           <h3>7) Multi-seed Variants per ID</h3>
-          <video class="media" autoplay muted loop playsinline poster="images/fig7_placeholder.png">
-            <source src="videos/idX_multiseed_grid.mp4" type="video/mp4">
-          </video>
+          <img class="media" src="images/diffseeds.png" alt="Reverse diffusion process from noise to silhouettes">
           <figcaption>Different seeds introduce subtle motion variations while preserving identity.</figcaption>
         </figure>
 
