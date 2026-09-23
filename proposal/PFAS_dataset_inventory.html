@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PFAS Dataset Inventory for Liver and Lipid Modeling</title>
+  <style>
+    :root{--ink:#17232b;--muted:#60727a;--paper:#f7faf8;--card:#fff;--line:#d8e4e0;--teal:#087f75;--teal2:#def3ef;--blue:#24577d;--blue2:#e8f1f8;--amber:#a56711;--amber2:#fff1d9;--red:#943e43;--red2:#f9e7e8;--green:#26734d}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.52}
+    header{background:linear-gradient(125deg,#102f3a,#166568 62%,#299587);color:#fff;padding:62px 7vw 54px}header .eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;opacity:.8}h1{font-family:Georgia,serif;font-size:clamp(2.2rem,5vw,4.5rem);line-height:1.03;max-width:1050px;margin:.45rem 0 1rem;font-weight:600}header p{font-size:1.1rem;max-width:920px;color:#edf7f5;margin:0}
+    .wrap{max-width:1240px;margin:auto;padding:32px 26px 80px}nav{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 28px}nav a,.button{color:var(--teal);background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 13px;text-decoration:none;font-size:.88rem}h2{font-family:Georgia,serif;font-size:2rem;margin:55px 0 14px;border-bottom:2px solid var(--teal);padding-bottom:8px}h3{font-size:1.14rem;margin:0 0 7px}p{margin:.45rem 0 1rem}.lead{font-size:1.1rem;max-width:980px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.stat,.card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px}.stat strong{display:block;font-size:1.35rem;color:var(--teal)}.note,.warn{padding:16px 18px;border-radius:10px;margin:18px 0}.note{background:var(--blue2);border-left:5px solid var(--blue)}.warn{background:var(--amber2);border-left:5px solid var(--amber)}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);font-size:.89rem}th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{position:sticky;top:0;background:#e8f3f0;color:#164d49;z-index:1}tr:last-child td{border-bottom:0}.scroll{overflow-x:auto;border-radius:12px;border:1px solid var(--line)}.scroll table{border:0;min-width:1020px}.yes{color:var(--green);font-weight:750}.req{color:var(--amber);font-weight:750}.no{color:var(--red);font-weight:750}.rank{display:inline-block;border-radius:999px;padding:3px 8px;font-size:.76rem;font-weight:750;background:var(--teal2);color:#075e57}.rank.secondary{background:var(--blue2);color:var(--blue)}.rank.context{background:var(--amber2);color:#7d4b08}
+    .study{background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px;margin:15px 0}.studyhead{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.tag{white-space:nowrap;border-radius:999px;padding:4px 9px;font-size:.76rem;font-weight:750;background:var(--teal2);color:#075e57}.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:13px 0}.meta div{background:#f3f7f5;border-radius:8px;padding:10px}.meta b{display:block;color:var(--teal);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}.source{font-size:.84rem;color:var(--muted)}a{color:var(--blue)}
+    .bars{margin:22px 0}.barrow{display:grid;grid-template-columns:110px 1fr 90px;gap:11px;align-items:center;margin:9px 0}.track{height:22px;background:#e8eeec;border-radius:5px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#55afa6,#087f75);border-radius:5px}.num{font-weight:750;color:var(--teal)}
+    .flow{display:grid;grid-template-columns:1fr 42px 1fr 42px 1fr;align-items:center;text-align:center;margin:22px 0}.node{background:#fff;border:2px solid #b9d8d2;border-radius:12px;padding:17px 11px;font-weight:720}.arrow{font-size:1.5rem;color:var(--teal)}ul,ol{padding-left:1.25rem}li{margin:.38rem 0}.small{font-size:.83rem;color:var(--muted)}.decision{background:linear-gradient(135deg,#e3f4f0,#edf3f8);border:1px solid #c4ddd7;border-radius:15px;padding:26px;margin-top:20px}.decision h3{font-family:Georgia,serif;font-size:1.5rem}
+    @media(max-width:800px){.grid,.meta{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.studyhead{display:block}.tag{display:inline-block;margin-top:7px}.wrap{padding:25px 15px 60px}header{padding:43px 22px}.barrow{grid-template-columns:88px 1fr 72px}}
+    @media print{header{padding:34px;background:#174f4b!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.wrap{padding:16px}nav{display:none}.study,.card{break-inside:avoid}th{position:static}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Verified dataset brief · 22 September 2026</div>
+  <h1>Datasets for PFAS–liver and PFAS–lipid modeling</h1>
+  <p>Which data the prior studies actually analyzed, what is open now, sample sizes, locations, years, variables, restrictions, and the most defensible dataset strategy for the proposal.</p>
+</header>
+<main class="wrap">
+  <nav><a href="pfas_dataset_explorer/index.html">Interactive map</a><a href="#answer">Bottom line</a><a href="#studies">Prior studies</a><a href="#open">Open human data</a><a href="#restricted">Request-based cohorts</a><a href="#environmental">Environmental data</a><a href="#recommendation">Recommendation</a><a href="PFAS_dataset_inventory.csv" download>Download CSV</a></nav>
+
+  <section id="answer">
+    <h2>Bottom line</h2>
+    <p class="lead">The papers did not train one shared machine-learning model. Each fitted statistical models to its own cohort. For your proposed national-to-local study, <strong>NHANES is the only immediately downloadable, person-level human source that jointly supplies serum PFAS, liver markers, lipids, covariates, and survey design variables at useful scale.</strong></p>
+    <div class="grid">
+      <div class="stat"><strong>NHANES: use now</strong>Open person-level U.S. data suitable for primary development, internal validation, trends, and temporal validation.</div>
+      <div class="stat"><strong>5 human sources: request</strong>CHMS, POEM, Pittsboro/GenX, ATSDR, and MIREC require controlled access or investigator collaboration.</div>
+      <div class="stat"><strong>4 open context sources</strong>EPA, USGS, and Florida water data improve geography and exposure context but contain no linked clinical outcomes.</div>
+    </div>
+    <div class="warn"><strong>Do not add all published sample sizes together.</strong> Several studies reuse overlapping NHANES cycles, and some GenX publications reuse overlapping participants. File-row counts are also not final analytic sample sizes: adult restrictions, missing outcomes, covariate completeness, detection rules, and fasting subsamples reduce the usable n.</div>
+  </section>
+
+  <section id="studies">
+    <h2>What the prior studies actually used</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Prior work</th><th>Underlying dataset</th><th>Place / years</th><th>Reported analytic size</th><th>PFAS and endpoints</th><th>Can you reuse it?</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Borghese et al., 2022</strong></td><td>Canadian Health Measures Survey cycles 1, 2, and 5</td><td>Canada; 2007–09, 2009–11, 2016–17</td><td>n=4,657 for PFOA/PFOS/PFHxS with AST/ALP/GGT; n=3,659 for ALT/bilirubin; n=1,957 for PFNA/PFDA/PFUnDA analyses</td><td>6 PFAS; ALT, AST, GGT, ALP, bilirubin; individual and q-g-computation mixture models</td><td class="req">Yes, after Statistics Canada controlled-access approval</td></tr>
+        <tr><td><strong>Yan et al., 2024</strong></td><td>NHANES</td><td>United States; 2009–2018</td><td>n=7,484 adults after exclusions</td><td>5 PFAS; ALT, AST, GGT, bilirubin, FIB-4; regression, splines, WQS</td><td class="yes">Yes—open download</td></tr>
+        <tr><td><strong>Haug et al., 2023</strong></td><td>POEM cohort</td><td>Uppsala, Sweden; recruitment 2010–2016</td><td>n=493; all age 50; 50% female</td><td>L-PFOS, PFOA, PFHxS, PFDA; 43 NMR lipid/lipoprotein measures</td><td class="req">Reasonable request to corresponding author</td></tr>
+        <tr><td><strong>Hall et al., 2023/2024</strong></td><td>Pittsboro component of the GenX Exposure Study</td><td>Pittsboro, North Carolina; Nov 2019 and Jan/Feb 2020</td><td>49 adults; 92 paired water/serum observations; 43 completed both visits</td><td>13 PFAS in water and serum; lipid panel and comprehensive metabolic panel</td><td class="req">Investigator/IRB request; not a direct public download</td></tr>
+        <tr><td><strong>Cheng et al., 2023</strong></td><td>NHANES</td><td>United States; 2017–2018</td><td>n=1,150 adults after exclusions</td><td>5 PFAS; transient elastography and derived steatosis/fibrosis indices</td><td class="yes">Yes—open download</td></tr>
+        <tr><td><strong>Momo et al., 2024</strong></td><td>NHANES</td><td>United States; 2003–2018</td><td>n=10,234 after exclusions</td><td>Common PFAS; HSI, FLI, and 2017–18 TE-CAP definitions</td><td class="yes">Yes—open download</td></tr>
+        <tr><td><strong>Costello et al., 2022</strong></td><td>Systematic review, not one dataset</td><td>Multiple countries and years</td><td>24 human epidemiologic studies + 85 rodent studies</td><td>PFAS and liver-injury/steatosis endpoints</td><td class="no">No single training file exists</td></tr>
+      </tbody>
+    </table></div>
+    <p class="source">Study sources: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9472375/">Borghese</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11629162/">Yan</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10541331/">Haug</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10529814/">Hall</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10281433/">Cheng</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10852365/">Momo</a>, and <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9044977/">Costello</a>.</p>
+  </section>
+
+  <section id="open">
+    <h2>Open human dataset: NHANES in detail</h2>
+    <div class="study">
+      <div class="studyhead"><div><h3>National Health and Nutrition Examination Survey</h3><p>Repeated U.S. cross-sections; interviews, examinations, laboratory measurements, and public survey weights linked by participant ID (SEQN).</p></div><span class="tag">Best primary dataset</span></div>
+      <div class="meta"><div><b>Geography</b>United States, nationally representative</div><div><b>Eligible PFAS sample</b>Generally a one-third subsample age 12+</div><div><b>Access</b>Immediate public XPT download</div><div><b>Unit</b>Person-level serum measurement</div></div>
+      <p><strong>Directly relevant variables:</strong> serum PFAS; ALT, AST, GGT, ALP, total bilirubin; total cholesterol, HDL, triglycerides and calculated/direct LDL depending cycle; age, sex, race/ethnicity, BMI, smoking, alcohol, diabetes, medications and other covariates. FIB-4 can be derived when age, AST, ALT and platelet count are available.</p>
+      <div class="bars" aria-label="NHANES PFAS data file row counts">
+        <div class="barrow"><strong>1999–00</strong><div class="track"><div class="fill" style="width:40.2%"></div></div><div class="num">1,456</div></div>
+        <div class="barrow"><strong>2003–04</strong><div class="track"><div class="fill" style="width:65.5%"></div></div><div class="num">2,368</div></div>
+        <div class="barrow"><strong>2005–06</strong><div class="track"><div class="fill" style="width:64.2%"></div></div><div class="num">2,323</div></div>
+        <div class="barrow"><strong>2007–08</strong><div class="track"><div class="fill" style="width:63.4%"></div></div><div class="num">2,294</div></div>
+        <div class="barrow"><strong>2009–10</strong><div class="track"><div class="fill" style="width:67.2%"></div></div><div class="num">2,432</div></div>
+        <div class="barrow"><strong>2011–12</strong><div class="track"><div class="fill" style="width:60.2%"></div></div><div class="num">2,177</div></div>
+        <div class="barrow"><strong>2013–14</strong><div class="track"><div class="fill" style="width:64.6%"></div></div><div class="num">2,339</div></div>
+        <div class="barrow"><strong>2015–16</strong><div class="track"><div class="fill" style="width:60.0%"></div></div><div class="num">2,170</div></div>
+        <div class="barrow"><strong>2017–18</strong><div class="track"><div class="fill" style="width:59.0%"></div></div><div class="num">2,133</div></div>
+        <div class="barrow"><strong>2017–Mar 20</strong><div class="track"><div class="fill" style="width:95.6%"></div></div><div class="num">3,460</div></div>
+        <div class="barrow"><strong>2021–23</strong><div class="track"><div class="fill" style="width:100%"></div></div><div class="num">3,618</div></div>
+      </div>
+      <p class="small">Counts above are records in the released PFAS laboratory files, not guaranteed complete analytic cases. The 2017–March 2020 pre-pandemic file overlaps and replaces the standalone 2017–18 file for analyses of the combined pre-pandemic period—never include both in one pooled dataset.</p>
+      <div class="scroll"><table>
+        <thead><tr><th>NHANES span</th><th>PFAS-file rows</th><th>Coverage notes</th><th>Recommended role</th></tr></thead>
+        <tbody>
+          <tr><td>1999–2000</td><td>1,456</td><td>Surplus-serum file; 11 PFAS; revised in 2022. Different variable names and below-LLOD handling.</td><td>Long-run trend sensitivity analysis, not the cleanest primary model start.</td></tr>
+          <tr><td>2003–2012</td><td>11,594 across five cycles</td><td>12 PFAS measures per released file; cycle-specific subsample weights.</td><td>Core harmonization period.</td></tr>
+          <tr><td>2013–2014</td><td>2,339 core PFAS rows; separate stored-serum isomer file has 1,954 rows</td><td>PFOA/PFOS isomers are in a separate surplus file. Reconstruct totals carefully.</td><td>Use only after a documented isomer harmonization rule.</td></tr>
+          <tr><td>2015–2018</td><td>4,303 across two cycles</td><td>Branched and linear PFOA/PFOS reported in main files; totals must be constructed consistently.</td><td>Core recent pre-pandemic development/validation period.</td></tr>
+          <tr><td>2003–2018 total</td><td><strong>18,236</strong></td><td>Eight released PFAS files before any age, outcome, or covariate exclusions.</td><td><strong>Recommended primary harmonized pool.</strong></td></tr>
+          <tr><td>2017–March 2020</td><td>3,460</td><td>Special pre-pandemic combined design and weight WTSBAPRP.</td><td>Alternative recent-period validation; do not combine with standalone 2017–18.</td></tr>
+          <tr><td>2021–2023</td><td>3,618</td><td>Newest released cycle; special PFAS subsample weight WTSPF2YR.</td><td>Strong out-of-time validation set after freezing the 2003–18 model.</td></tr>
+          <tr><td>2003–2023 non-overlapping total</td><td><strong>23,181</strong></td><td>Uses 2017–March 2020 instead of standalone 2017–18; still before exclusions.</td><td>Maximum modern PFAS file pool, but pandemic/design shifts need explicit handling.</td></tr>
+        </tbody>
+      </table></div>
+      <h3 style="margin-top:20px">PFAS harmonization that matters</h3>
+      <ul>
+        <li><strong>Safest cross-cycle core:</strong> PFOA, PFOS, PFHxS, PFNA, PFDA/PFDeA, and often PFUnDA/PFUA. Detection prevalence should be checked before final inclusion.</li>
+        <li><strong>2013 onward:</strong> PFOA and PFOS may be split into linear and branched isomers. Define total PFOA and total PFOS consistently, and preserve isomer-specific variables for sensitivity analyses.</li>
+        <li><strong>Below detection:</strong> use the released value/comment-code convention appropriate to each cycle; do not silently apply one rule to every period.</li>
+        <li><strong>Weights:</strong> build multi-cycle subsample weights and retain strata/PSU variables. Unweighted prediction can answer a different question, but population inference requires the complex design.</li>
+      </ul>
+      <p class="source">Official sources: <a href="https://wwwn.cdc.gov/Nchs/Nhanes/Search/DataPage.aspx?Component=Laboratory">NHANES laboratory file search</a>; <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/1999/DataFiles/SSPFC_A.htm">1999–2000 PFAS documentation</a>; <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/PFAS_H.htm">2013–14 core file</a>; <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2013/DataFiles/SSPFAS_H.htm">2013–14 isomer file</a>; <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2017/DataFiles/P_PFAS.htm">2017–March 2020 file</a>; <a href="https://wwwn.cdc.gov/Nchs/Data/Nhanes/Public/2021/DataFiles/PFAS_L.htm">2021–23 file</a>. Counts were checked directly against the released XPT files.</p>
+    </div>
+  </section>
+
+  <section id="restricted">
+    <h2>Human datasets that require an application or collaboration</h2>
+    <div class="scroll"><table>
+      <thead><tr><th>Dataset</th><th>Area / years</th><th>Size</th><th>What it contains</th><th>Access and proposal value</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Canadian Health Measures Survey</strong><br><span class="rank secondary">National replication</span></td><td>Canada; cited cycles 2007–11 and 2016–17</td><td>Cited liver analyses: 1,957–4,657 adults depending PFAS/outcome availability</td><td>Serum/plasma PFAS, physical measures, liver chemistry, covariates, survey design</td><td><span class="req">Controlled.</span> Apply through a Statistics Canada Research Data Centre. Strongest independent national replication, but not an instant download.</td></tr>
+        <tr><td><strong>POEM</strong><br><span class="rank secondary">Lipid validation</span></td><td>Uppsala, Sweden; 2010–16</td><td>493 people, all age 50</td><td>4 PFAS and 43 detailed NMR lipid/lipoprotein measures</td><td><span class="req">By request.</span> Useful for mechanistic lipid patterns, less suitable for general-population model validation because age is fixed.</td></tr>
+        <tr><td><strong>Pittsboro / GenX Exposure Study</strong><br><span class="rank">Closest analogue</span></td><td>Cape Fear River Basin, NC; 2017 onward; Pittsboro substudy 2019–20</td><td>Pittsboro n=49; broader study &gt;1,000 people and 1,020 blood samples in 2020–21</td><td>Legacy/emerging PFAS, water and serum, questionnaires, lipids and clinical chemistry in some waves</td><td><span class="req">Investigator request + IRB.</span> Best published analogue to a Florida exposed-community validation design. Variable overlap must be confirmed before promising analyses.</td></tr>
+        <tr><td><strong>ATSDR 10-site exposure assessments</strong><br><span class="rank secondary">Exposure benchmark</span></td><td>10 U.S. communities near military/AFFF sources; approximately 2018–21</td><td>2,384 residents, 1,212 households; pooled model subset 1,791 adults + 197 children at eight ATSDR-led sites</td><td>7 serum PFAS, drinking-water history, demographics and exposure questionnaires</td><td><span class="req">Reports are open; microdata are not offered as a simple download.</span> Excellent for exposure distributions, but the pooled product is not a liver/lipid modeling dataset.</td></tr>
+        <tr><td><strong>MIREC Research Platform</strong><br><span class="rank secondary">Life-course extension</span></td><td>10 Canadian cities; recruitment began 2008</td><td>Approximately 2,000 original pregnancies; follow-up subsets differ</td><td>PFAS and many chemicals, biospecimens, pregnancy/child outcomes, maternal cardiometabolic measures</td><td><span class="req">Biobank application.</span> Valuable future sex-specific/life-course extension; not aligned with the proposal's general-adult primary target.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="source">Access sources: <a href="https://www.statcan.gc.ca/en/microdata/data-centres/access">Statistics Canada RDC access</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10541331/">POEM data-availability statement</a>; <a href="https://genxstudy.ncsu.edu/faq/">GenX Study FAQ</a>; <a href="https://www.atsdr.cdc.gov/pfas/final-report/index.html">ATSDR ten-site report</a>; <a href="https://www.canada.ca/en/health-canada/services/environmental-workplace-health/environmental-contaminants/human-biomonitoring-environmental-chemicals/maternal-infant-research-environmental-chemicals-mirec-study.html">MIREC Research Platform</a>.</p>
+  </section>
+
+  <section id="environmental">
+    <h2>Open environmental datasets you can use</h2>
+    <p>These sources can characterize water exposure, contamination sources, geography, and local context. They cannot independently estimate PFAS–liver or PFAS–lipid relationships because they do not contain linked person-level serum and clinical outcomes.</p>
+    <div class="scroll"><table>
+      <thead><tr><th>Dataset</th><th>Area / year</th><th>Size and PFAS scope</th><th>Download</th><th>Best use</th></tr></thead>
+      <tbody>
+        <tr><td><strong>EPA UCMR 5</strong><br><span class="rank context">High-value context</span></td><td>United States; monitoring 2023–2025; final dataset released 2026</td><td>About 10,130 public water systems with complete results and about 25,950 sampling locations; 29 PFAS + lithium</td><td class="yes">Open text/Excel</td><td>National occurrence, community comparison, geospatial linkage and Florida site context. Coverage includes all eligible large systems and a representative sample of 800 smaller systems.</td></tr>
+        <tr><td><strong>USGS national tap-water PFAS</strong></td><td>Contiguous U.S., Alaska, Hawaii, Puerto Rico; May 2021–May 2022</td><td>409 one-time tap samples plus 85 repeated samples at three locations; 34 PFAS</td><td class="yes">Open data release</td><td>Independent occurrence mapping and public-versus-private tap-water context.</td></tr>
+        <tr><td><strong>EPA PFAS Analytic Tools</strong></td><td>United States; multiple programs/years</td><td>Dynamic integration of UCMR, state water monitoring, facilities, releases, waste, air, water, land and tissue detections</td><td class="yes">Open filtered export</td><td>Source/facility overlays and exploratory spatial analysis. Treat it as an integration portal, not one coherent cohort.</td></tr>
+        <tr><td><strong>Florida DEP drinking-water information</strong><br><span class="rank context">Florida-specific</span></td><td>Florida; historical/current with PFAS monitoring expanding through 2027</td><td>Dynamic public-water-system and chemical-monitoring records; system, source, service-population and sampling information</td><td class="yes">Open reports/data pages</td><td>Local exposure context, water-system linkage and recruitment/site-selection support. Confirm exact PFAS analytes and dates in each export.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="source">Official sources: <a href="https://www.epa.gov/dwucmr/fifth-unregulated-contaminant-monitoring-rule-data-finder">EPA UCMR 5 Data Finder</a>; <a href="https://www.usgs.gov/data/concentrations-and-polyfluoroalkyl-substances-pfas-tapwater-collected-throughout-united-states">USGS tap-water data release</a>; <a href="https://echo.epa.gov/trends/pfas-tools">EPA PFAS Analytic Tools</a>; <a href="https://floridadep.gov/water/source-drinking-water/content/chemical-data">Florida DEP chemical data</a>; <a href="https://floridadep.gov/water/source-drinking-water/content/and-polyfluoroalkyl-substances-pfas">Florida DEP PFAS program</a>.</p>
+  </section>
+
+  <section id="recommendation">
+    <h2>Recommended dataset architecture</h2>
+    <div class="flow">
+      <div class="node">Develop and internally validate in harmonized NHANES 2003–2018</div><div class="arrow">→</div><div class="node">Freeze model; test out of time in NHANES 2021–2023</div><div class="arrow">→</div><div class="node">Externally validate, recalibrate, and adapt in the Florida cohort</div>
+    </div>
+    <div class="decision">
+      <h3>Best defensible plan</h3>
+      <ol>
+        <li><strong>Primary development:</strong> NHANES 2003–2018, with prespecified harmonization of PFAS isomers, laboratory methods, LLODs, outcomes and multi-cycle weights. Use cycle-aware resampling—not a random split that leaks time-period information.</li>
+        <li><strong>Temporal validation:</strong> hold out 2021–2023 entirely until model choices are frozen. Report calibration as well as discrimination/error.</li>
+        <li><strong>True external validation:</strong> use the Florida serum cohort. Lock the intersecting PFAS, outcome definitions, units and covariates before looking at performance.</li>
+        <li><strong>Contextual exposure layer:</strong> link UCMR 5 and Florida DEP water-system information where geography and dates permit. Keep environmental and serum exposures conceptually separate.</li>
+        <li><strong>Optional replication:</strong> pursue CHMS or GenX access only if the timeline supports approvals; do not make proposal success depend on unapproved data.</li>
+      </ol>
+    </div>
+    <h3 style="margin-top:28px">What to request from the Florida cohort before analysis</h3>
+    <ul>
+      <li>Exact participant n, recruitment years, counties/water systems, inclusion/exclusion criteria, repeated visits, and specimen timing.</li>
+      <li>PFAS analyte list, units, matrix, assay method, LOD/LLOQ, detection frequencies, isomer reporting, batch variables and storage conditions.</li>
+      <li>ALT, AST, GGT, ALP, total bilirubin, platelet count, total cholesterol, HDL, LDL, triglycerides, fasting status, medication use and laboratory reference ranges.</li>
+      <li>Core adjustment variables aligned with NHANES: age, sex, race/ethnicity, BMI, smoking, alcohol, diabetes, kidney function, socioeconomic measures and survey/recruitment structure.</li>
+      <li>A data dictionary plus a blinded feasibility count for complete exposure–outcome–covariate overlap. This number, not total enrollment, determines external-validation power.</li>
+    </ul>
+    <div class="note"><strong>Practical conclusion:</strong> begin coding with NHANES immediately. Treat Florida as the required external test set, not as extra rows to mix into model training. Use water datasets to explain exposure context and potential domain shift, not as substitutes for serum measurements.</div>
+    <p class="small">Prepared from official dataset documentation and the cited primary studies. “Open” means downloadable without a project-specific data approval; all uses remain subject to the source's terms, disclosure rules, and appropriate ethics review. Dataset pages and release contents can change, so reconfirm them when the analysis begins.</p>
+  </section>
+</main>
+</body>
+</html>

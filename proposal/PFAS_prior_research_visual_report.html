@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PFAS Prior Research — Plots, Diagrams, and Conclusions</title>
+  <style>
+    :root{--ink:#17232b;--muted:#5f6f78;--paper:#fbfcfa;--card:#fff;--line:#dce5e2;--teal:#087f75;--teal2:#dff3ef;--blue:#244f79;--blue2:#e7eff7;--amber:#a86612;--amber2:#fff0d9;--red:#9a3b3b;--red2:#f9e8e8}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.58}
+    header{background:linear-gradient(125deg,#102e38 0%,#145c61 60%,#24887d 100%);color:#fff;padding:64px 7vw 56px}
+    header .eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;opacity:.78} h1{font-family:Georgia,serif;font-size:clamp(2.1rem,5vw,4.5rem);line-height:1.04;max-width:980px;margin:.4rem 0 1rem;font-weight:600}
+    header p{font-size:1.12rem;max-width:900px;color:#e8f3f1;margin:0}.wrap{max-width:1180px;margin:auto;padding:34px 28px 80px}
+    nav{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 28px}nav a{color:var(--teal);background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;text-decoration:none;font-size:.9rem}
+    h2{font-family:Georgia,serif;font-size:2rem;margin:58px 0 14px;border-bottom:2px solid var(--teal);padding-bottom:8px} h3{font-size:1.2rem;margin:0 0 8px} p{margin:.5rem 0 1rem}
+    .lead{font-size:1.12rem;max-width:920px}.note,.warning{padding:16px 18px;border-radius:10px;margin:18px 0}.note{background:var(--blue2);border-left:5px solid var(--blue)}.warning{background:var(--amber2);border-left:5px solid var(--amber)}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}.stat strong{display:block;font-size:1.35rem;color:var(--teal)}
+    .study{background:var(--card);border:1px solid var(--line);border-radius:15px;margin:26px 0;padding:24px;box-shadow:0 5px 22px rgba(24,56,57,.055)}.studyhead{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.tag{display:inline-block;background:var(--teal2);color:#075f58;border-radius:999px;padding:5px 10px;font-size:.78rem;font-weight:700;white-space:nowrap}
+    figure{margin:20px 0 12px;background:#f4f7f6;border:1px solid var(--line);border-radius:12px;padding:12px;overflow:hidden}figure img{display:block;width:100%;height:auto;background:#fff;border-radius:6px}figcaption{font-size:.86rem;color:var(--muted);padding:10px 6px 2px}
+    .readout{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}.box{border-radius:10px;padding:15px 16px}.result{background:var(--teal2)}.limit{background:var(--amber2)}.box h4{margin:0 0 6px;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}.box p{margin:0}
+    .bars{max-width:780px;margin:18px auto}.barrow{display:grid;grid-template-columns:90px 1fr 70px;gap:12px;align-items:center;margin:11px 0}.track{height:24px;background:#edf1f0;border-radius:6px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#41a89e,#087f75);border-radius:6px}.num{font-weight:700;color:var(--teal)}
+    .flow{display:grid;grid-template-columns:1fr 40px 1fr 40px 1fr;align-items:center;text-align:center;margin:22px 0}.flow .node{background:#fff;border:2px solid #b9d6d1;border-radius:12px;padding:18px 10px;font-weight:700}.arrow{font-size:1.5rem;color:var(--teal)}
+    table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);font-size:.93rem}th,td{padding:12px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#eaf3f1;color:#174f4b}tr:last-child td{border-bottom:0}.strong{color:#087f75;font-weight:700}.mixed{color:#a86612;font-weight:700}.weak{color:#9a3b3b;font-weight:700}
+    .source{font-size:.86rem;color:var(--muted);margin-top:14px}.source a{color:var(--blue)}.conclusion{background:linear-gradient(135deg,#e4f5f1,#edf2f7);border:1px solid #c8ded9;border-radius:15px;padding:28px;margin-top:24px}.conclusion h3{font-family:Georgia,serif;font-size:1.55rem}
+    ul{padding-left:1.3rem}li{margin:.35rem 0}.small{font-size:.84rem;color:var(--muted)}
+    @media(max-width:760px){.grid,.readout{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.studyhead{display:block}.tag{margin-top:8px}.wrap{padding:26px 16px 60px}header{padding:44px 24px}}
+    @media print{header{padding:35px;background:#174f4b!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.wrap{padding:18px}.study{break-inside:avoid;box-shadow:none}nav{display:none}a{color:inherit}.readout,.grid{break-inside:avoid}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">Proposal evidence brief · 22 September 2026</div>
+  <h1>PFAS, liver health, and lipid metabolism</h1>
+  <p>Key plots, diagrams, reported findings, and limitations from the prior research most relevant to a national-to-local PFAS modeling proposal.</p>
+</header>
+<main class="wrap">
+  <nav>
+    <a href="#overview">Overview</a><a href="#liver">Liver plots</a><a href="#lipids">Lipid plots</a><a href="#community">Exposed community</a><a href="#inconsistency">NAFLD & fibrosis</a><a href="#synthesis">Synthesis</a><a href="#references">References</a>
+  </nav>
+
+  <section id="overview">
+    <h2>What the existing evidence says</h2>
+    <p class="lead">Prior research already supports associations between serum PFAS and several liver enzymes and cholesterol measures. It also shows that effects differ by compound, outcome, population, and model. The open question for this proposal is not simply whether PFAS correlates with health biomarkers, but whether relationships learned in NHANES reproduce in an independently characterized exposed Florida community.</p>
+    <div class="grid">
+      <div class="stat"><strong>Most repeatable</strong>AST, GGT, ALP, total cholesterol, and LDL/non-HDL signals.</div>
+      <div class="stat"><strong>More variable</strong>ALT, bilirubin, HDL, triglycerides, and fibrosis indices.</div>
+      <div class="stat"><strong>Least settled</strong>Clinical fatty-liver/steatosis outcomes and causal interpretation.</div>
+    </div>
+    <div class="warning"><strong>Interpretation rule:</strong> most human results below are observational and cross-sectional. They support association and prediction, not proof that PFAS caused the biomarker changes.</div>
+  </section>
+
+  <section id="liver">
+    <h2>Liver-function evidence</h2>
+
+    <article class="study">
+      <div class="studyhead"><div><h3>1. PFAS mixture and liver enzymes — Canadian Health Measures Survey</h3><p>Borghese et al., 2022 · nationally representative cross-sectional analysis</p></div><span class="tag">Mixture model</span></div>
+      <figure><img src="report_assets/borghese_2022_fig1.png" alt="Percent changes in AST, GGT, and ALP associated with individual PFAS and a PFAS mixture"><figcaption>Original Figure 1. Points show estimated percentage change; vertical lines show 95% confidence intervals. Individual-PFAS estimates correspond to a two-fold concentration increase; the qgComp mixture estimate corresponds to a simultaneous one-quartile increase in the mixture.</figcaption></figure>
+      <div class="readout">
+        <div class="box result"><h4>Reported result</h4><p>A one-quartile joint mixture increase was associated with <strong>7.5% higher AST</strong> (95% CI 4.0–10.4), <strong>9.7% higher GGT</strong> (1.7–17.0), and <strong>2.8% higher ALP</strong> (0.5–5.4). No consistent association was observed with ALT or total bilirubin.</p></div>
+        <div class="box limit"><h4>Proposal implication</h4><p>PFAS mixtures and these liver enzymes have already been analyzed with quantile g-computation. Repeating the same analysis is not novel; external validation and transportability are more defensible contributions.</p></div>
+      </div>
+      <p class="source">Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9472375/">Borghese et al., Environmental Health (2022)</a>. Figure reproduced under the article’s open-access license.</p>
+    </article>
+
+    <article class="study">
+      <div class="studyhead"><div><h3>2. PFAS mixture weights and liver outcomes — NHANES 2009–2018</h3><p>Yan et al., 2024 · 7,484 U.S. adults</p></div><span class="tag">WQS / NHANES</span></div>
+      <figure><img src="report_assets/yan_2024_fig5.jpg" alt="Weighted quantile sum weights for PFAS and liver outcomes"><figcaption>Original Figure 5. Panels A–E display WQS weights, which indicate relative contribution inside the fitted mixture index—not causal potency. Panel F displays the fitted WQS coefficients and 95% confidence intervals.</figcaption></figure>
+      <div class="readout">
+        <div class="box result"><h4>Reported result</h4><p>The positive WQS mixture index was associated with ALT, AST, GGT, and total bilirubin. It was not statistically significant for FIB-4 (p=0.146). PFNA received the largest weight for ALT (0.757), AST (0.657), GGT (0.461), and bilirubin (0.648); PFOS received the largest FIB-4 weight.</p></div>
+        <div class="box limit"><h4>How to read it</h4><p>A large WQS weight means the chemical contributed strongly within this constrained mixture model. It does not by itself prove that the chemical is uniquely causal or more toxic.</p></div>
+      </div>
+      <p class="source">Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11629162/">Yan et al., Journal of Biomedical Research (2024)</a>. CC BY 4.0.</p>
+    </article>
+
+    <article class="study">
+      <div class="studyhead"><div><h3>3. Nonlinear exposure–response patterns — NHANES 2009–2018</h3><p>Yan et al., 2024 · restricted cubic splines</p></div><span class="tag">Nonlinearity</span></div>
+      <figure><img src="report_assets/yan_2024_fig4.jpg" alt="Restricted cubic spline plots for PFAS and liver biomarkers"><figcaption>Original Figure 4. Curves show modeled exposure–response relationships; blue bands are 95% confidence intervals. Several relationships are nonlinear, and uncertainty widens at exposure extremes.</figcaption></figure>
+      <div class="readout">
+        <div class="box result"><h4>Reported result</h4><p>Examples include inverted-U patterns for PFOA–ALT and PFHxS with ALT/AST/GGT, a U-shaped PFNA–GGT relationship, and positive dose-response patterns for PFOA/PFNA with FIB-4.</p></div>
+        <div class="box limit"><h4>Proposal implication</h4><p>Assuming a single linear slope may miss structure. Nonlinear modeling is justified, but it is not itself new. Curves must also be checked for stability in the tails and in the Florida cohort.</p></div>
+      </div>
+      <p class="source">Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11629162/">Yan et al. (2024)</a>. CC BY 4.0.</p>
+    </article>
+
+    <article class="study">
+      <div class="studyhead"><div><h3>4. Systematic review and meta-analysis of liver injury</h3><p>Costello et al., 2022 · 24 epidemiological studies plus 85 rodent studies</p></div><span class="tag">Evidence synthesis</span></div>
+      <div class="bars" role="img" aria-label="Z-score summary for associations between PFAS and ALT">
+        <div class="barrow"><strong>PFOA</strong><div class="track"><div class="fill" style="width:100%"></div></div><div class="num">z=6.20</div></div>
+        <div class="barrow"><strong>PFOS</strong><div class="track"><div class="fill" style="width:57%"></div></div><div class="num">z=3.55</div></div>
+        <div class="barrow"><strong>PFNA</strong><div class="track"><div class="fill" style="width:37%"></div></div><div class="num">z=2.27</div></div>
+      </div>
+      <p class="small">Original summary graphic created for this report from the paper’s reported weighted z-score meta-analysis. Bar length represents z-score magnitude, not a pooled clinical effect size.</p>
+      <div class="readout">
+        <div class="box result"><h4>Reported conclusion</h4><p>Higher ALT was associated with PFOA, PFOS, and PFNA; PFOA was also associated with higher AST and GGT. Rodent evidence consistently supported liver injury and steatosis signals.</p></div>
+        <div class="box limit"><h4>Important limitation</h4><p>Heterogeneity prevented a conventional pooled effect estimate. The synthesis establishes a signal but does not provide one universal dose–response coefficient for prediction.</p></div>
+      </div>
+      <p class="source">Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9044977/">Costello et al., Environmental Health Perspectives (2022)</a>. EHP content is public domain unless otherwise noted.</p>
+    </article>
+  </section>
+
+  <section id="lipids">
+    <h2>Lipid and lipoprotein evidence</h2>
+    <article class="study">
+      <div class="studyhead"><div><h3>5. PFAS and cholesterol across lipoprotein subfractions</h3><p>Haug et al., 2023 · POEM cohort, Sweden · 493 adults</p></div><span class="tag">Detailed lipid profile</span></div>
+      <figure><img src="report_assets/haug_2023_fig2.png" alt="Forest plots of PFAS associations with cholesterol in lipoprotein subfractions"><figcaption>Original Figure 2. Black points denote associations passing false-discovery-rate correction; open points do not. The vertical line at zero indicates no association.</figcaption></figure>
+      <div class="readout">
+        <div class="box result"><h4>Reported result</h4><p>L-PFOS, PFOA, and PFDA were positively associated with cholesterol in multiple fractions, especially IDL and small, medium, and large LDL. PFHxS showed no significant association with the 13 cholesterol subfractions.</p></div>
+        <div class="box limit"><h4>Proposal implication</h4><p>“Lipids” should not be treated as one outcome. Total cholesterol, LDL/non-HDL, HDL, and triglycerides may show materially different relationships.</p></div>
+      </div>
+      <p class="source">Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10541331/">Haug et al., Journal of Exposure Science & Environmental Epidemiology (2023)</a>. CC BY 4.0.</p>
+    </article>
+
+    <article class="study">
+      <div class="studyhead"><div><h3>6. The triglyceride contrast</h3><p>Haug et al., 2023 · same cohort and models</p></div><span class="tag">Mostly null</span></div>
+      <figure><img src="report_assets/haug_2023_fig3.png" alt="Forest plots of PFAS associations with triglycerides in lipoprotein subfractions"><figcaption>Original Figure 3. Most confidence intervals cross zero; only PFDA with triglycerides in very large HDL was significant after correction.</figcaption></figure>
+      <div class="readout">
+        <div class="box result"><h4>Reported result</h4><p>Evidence for PFAS associations with triglycerides across 13 lipoprotein subfractions was weak to null, in marked contrast to the cholesterol results.</p></div>
+        <div class="box limit"><h4>Proposal implication</h4><p>Triglycerides remain worth testing, but the primary lipid hypothesis should probably emphasize total cholesterol and LDL/non-HDL rather than expecting uniform effects across all lipid outcomes.</p></div>
+      </div>
+      <p class="source">Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10541331/">Haug et al. (2023)</a>. CC BY 4.0.</p>
+    </article>
+  </section>
+
+  <section id="community">
+    <h2>Evidence from a PFAS-exposed U.S. community</h2>
+    <article class="study">
+      <div class="studyhead"><div><h3>7. Pittsboro, North Carolina: drinking water, serum PFAS, and biomarkers</h3><p>Hall et al., 2023 · paired drinking-water and serum measurements</p></div><span class="tag">Closest design analogue</span></div>
+      <div class="flow">
+        <div class="node">Documented PFAS in community drinking water</div><div class="arrow">→</div><div class="node">Elevated serum PFAS compared with the U.S. population</div><div class="arrow">→</div><div class="node">PFOA / PFHxS associated with cholesterol measures</div>
+      </div>
+      <table>
+        <thead><tr><th>Reported relationship</th><th>Direction</th><th>Interpretation</th></tr></thead>
+        <tbody>
+          <tr><td>PFHxS → total cholesterol</td><td class="strong">Positive</td><td>Approximately every 10% higher PFHxS corresponded to about 2 mg/dL higher total cholesterol in the fitted model.</td></tr>
+          <tr><td>PFOA → total cholesterol</td><td class="strong">Positive</td><td>Statistically significant positive association.</td></tr>
+          <tr><td>PFHxS / PFOA → non-HDL cholesterol</td><td class="strong">Positive</td><td>Both were associated with higher non-HDL cholesterol.</td></tr>
+          <tr><td>Individual PFAS → HDL</td><td class="mixed">No clear association</td><td>No individual PFAS was associated with HDL in the reported analysis.</td></tr>
+        </tbody>
+      </table>
+      <p class="small">This is an original summary diagram/table based on the study’s reported findings, not a reproduction of the paper’s copyrighted plot.</p>
+      <div class="readout">
+        <div class="box result"><h4>Why it matters</h4><p>This study is conceptually closer to the proposed Florida cohort than NHANES: it examined a community with documented drinking-water contamination and measured serum PFAS plus clinical biomarkers.</p></div>
+        <div class="box limit"><h4>What remains open</h4><p>A community-specific association does not establish that an NHANES-trained model will be calibrated locally. That transportability question remains central to the proposal.</p></div>
+      </div>
+      <p class="source">Source: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10529814/">Hall et al., Science of the Total Environment (2023)</a>.</p>
+    </article>
+  </section>
+
+  <section id="inconsistency">
+    <h2>Why fatty-liver and fibrosis outcomes need caution</h2>
+    <table>
+      <thead><tr><th>Study</th><th>Population / definition</th><th>Reported conclusion</th><th>What it means here</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Cheng et al., 2023</strong></td><td>NHANES 2017–2018; transient elastography plus derived steatosis/fibrosis indices</td><td>No significant adjusted association between individual PFAS and NAFLD; fibrosis indices were more often positively correlated with PFAS.</td><td class="mixed">Possible fibrosis signal, weak steatosis signal.</td></tr>
+        <tr><td><strong>Momo et al., 2024</strong></td><td>NHANES 2003–2018; 10,234 participants; HSI, FLI, and TE-CAP definitions</td><td>Total PFAS was inversely associated with NAFLD-HSI; PFHxS was inversely associated with HSI/FLI; TE-CAP NAFLD was not associated with PFAS.</td><td class="weak">Results change with case definition and analytic design.</td></tr>
+        <tr><td><strong>Yan et al., 2024</strong></td><td>NHANES 2009–2018; FIB-4</td><td>Mixture WQS coefficient for FIB-4 was not significant, although individual/quartile and spline analyses produced some fibrosis signals.</td><td class="mixed">Model-dependent evidence.</td></tr>
+      </tbody>
+    </table>
+    <div class="note"><strong>Practical choice:</strong> liver enzymes are cleaner primary endpoints for the proposed modeling work. NAFLD/steatosis and fibrosis can be secondary or exploratory endpoints, with definitions prespecified and sensitivity analyses across definitions.</div>
+    <p class="source">Sources: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10281433/">Cheng et al. (2023)</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10852365/">Momo et al. (2024)</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11629162/">Yan et al. (2024)</a>.</p>
+  </section>
+
+  <section id="synthesis">
+    <h2>Cross-study synthesis</h2>
+    <table>
+      <thead><tr><th>Outcome</th><th>Overall pattern</th><th>Suggested proposal role</th></tr></thead>
+      <tbody>
+        <tr><td>AST</td><td class="strong">Fairly consistent positive association</td><td>Primary liver endpoint</td></tr>
+        <tr><td>GGT</td><td class="strong">Fairly consistent positive association</td><td>Primary liver endpoint</td></tr>
+        <tr><td>ALP</td><td class="strong">Positive in several mixture analyses</td><td>Primary/secondary endpoint</td></tr>
+        <tr><td>ALT</td><td class="mixed">Often positive, but not uniform; nonlinear patterns reported</td><td>Primary endpoint with nonlinear checks</td></tr>
+        <tr><td>Total bilirubin</td><td class="mixed">Mixed across studies</td><td>Secondary endpoint</td></tr>
+        <tr><td>Total cholesterol</td><td class="strong">Repeated positive associations</td><td>Primary lipid endpoint</td></tr>
+        <tr><td>LDL / non-HDL</td><td class="strong">Among the most consistent lipid signals</td><td>Primary lipid endpoint</td></tr>
+        <tr><td>HDL</td><td class="mixed">Less consistent; particle size may matter</td><td>Secondary endpoint</td></tr>
+        <tr><td>Triglycerides</td><td class="weak">Often weak, null, or population-dependent</td><td>Secondary/exploratory endpoint</td></tr>
+        <tr><td>NAFLD / steatosis</td><td class="weak">Inconsistent and definition-sensitive</td><td>Exploratory, not the central claim</td></tr>
+        <tr><td>Fibrosis indices</td><td class="mixed">Some positive signals, but model-dependent</td><td>Secondary/exploratory endpoint</td></tr>
+      </tbody>
+    </table>
+
+    <div class="conclusion">
+      <h3>Overall conclusion for the proposal</h3>
+      <p>Existing research has already established the analytic pipeline <strong>serum PFAS → individual/mixture modeling → liver and lipid biomarkers</strong>. NHANES, WQS, q-gComputation, restricted cubic splines, and related methods have all been used. The proposal should therefore avoid presenting any of those elements alone as the innovation.</p>
+      <div class="flow">
+        <div class="node">Learn PFAS–biomarker relationships in harmonized NHANES</div><div class="arrow">→</div><div class="node">Externally test discrimination and calibration in the Florida cohort</div><div class="arrow">→</div><div class="node">Identify transport failure and adapt with limited local data</div>
+      </div>
+      <p><strong>The strongest proposed contribution:</strong> determine whether nationally learned PFAS–liver and PFAS–lipid relationships remain reliable in a specifically exposed U.S. community, and develop a principled recalibration/adaptation strategy when they do not.</p>
+    </div>
+
+    <h3 style="margin-top:30px">Recommended endpoint hierarchy</h3>
+    <ul>
+      <li><strong>Primary liver:</strong> ALT, AST, GGT, ALP.</li>
+      <li><strong>Primary lipids:</strong> total cholesterol, LDL, and/or non-HDL.</li>
+      <li><strong>Secondary:</strong> bilirubin, HDL, triglycerides, FIB-4 or other prespecified fibrosis indices.</li>
+      <li><strong>Exploratory:</strong> NAFLD/steatosis definitions and subgroup-specific nonlinear effects.</li>
+    </ul>
+  </section>
+
+  <section id="references">
+    <h2>Sources and reuse notes</h2>
+    <ol>
+      <li>Borghese MM et al. “Individual and mixture associations of perfluoroalkyl substances on liver function biomarkers in the Canadian Health Measures Survey.” <em>Environmental Health</em> (2022). <a href="https://doi.org/10.1186/s12940-022-00892-6">DOI</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9472375/">Full text</a>.</li>
+      <li>Yan Y et al. “Association of exposure to per- and polyfluoroalkyl substances with liver injury in American adults.” <em>Journal of Biomedical Research</em> (2024). <a href="https://doi.org/10.7555/JBR.38.20240018">DOI</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11629162/">Full text</a>.</li>
+      <li>Costello E et al. “Exposure to per- and Polyfluoroalkyl Substances and Markers of Liver Injury: A Systematic Review and Meta-Analysis.” <em>Environmental Health Perspectives</em> (2022). <a href="https://doi.org/10.1289/EHP10092">DOI</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9044977/">Full text</a>.</li>
+      <li>Haug M et al. “Associations of perfluoroalkyl substances (PFAS) with lipid and lipoprotein profiles.” <em>Journal of Exposure Science & Environmental Epidemiology</em> (2023). <a href="https://doi.org/10.1038/s41370-023-00545-x">DOI</a> · <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10541331/">Full text</a>.</li>
+      <li>Hall SM et al. “PFAS Levels in Paired Drinking Water and Serum Samples Collected from an Exposed Community in Central North Carolina.” <em>Science of the Total Environment</em> (2023). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10529814/">Full text</a>.</li>
+      <li>Cheng W et al. “Close association of PFASs exposure with hepatic fibrosis than steatosis: evidences from NHANES 2017–2018.” <em>Annals of Medicine</em> (2023). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10281433/">Full text</a>.</li>
+      <li>Momo K et al. “Associations of per- and polyfluoroalkyl substances and nonalcoholic fatty liver disease in the United States adult population, 2003–2018.” (2024). <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10852365/">Full text</a>.</li>
+    </ol>
+    <p class="small">Original paper figures are included with attribution from openly accessible articles. The meta-analysis bars, exposed-community pathway, comparison tables, and proposal workflow are new visual summaries created for this report. Always consult the full paper before quoting a numerical result in the final proposal.</p>
+  </section>
+</main>
+</body>
+</html>
