@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Regional Serum PFAS Distribution Comparison</title>
+<style>
+:root{--ink:#17252b;--muted:#62727a;--line:#d8e4e0;--paper:#f5f8f6;--teal:#087f75}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.45}.wrap{max-width:1180px;margin:auto;padding:30px 22px 60px}header{background:linear-gradient(120deg,#102f3a,#176569 65%,#278e82);color:#fff;padding:38px 6vw}h1{font:600 clamp(1.8rem,4vw,3.2rem)/1.05 Georgia,serif;margin:0 0 9px}header p{max-width:920px;color:#e4f1ef;margin:0}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 8px 25px rgba(20,54,57,.08)}.toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.filters{display:flex;gap:7px;flex-wrap:wrap}button,a.button{border:1px solid #c6d7d2;background:#fff;border-radius:999px;padding:8px 12px;color:var(--ink);text-decoration:none;cursor:pointer}button.active{background:var(--teal);border-color:var(--teal);color:#fff}#plot{width:100%;height:auto;display:block}.legend{display:flex;gap:18px;flex-wrap:wrap;margin:12px 0;font-size:.82rem}.legend span{display:flex;align-items:center;gap:6px}.swatch{width:12px;height:12px;border-radius:50%;display:inline-block}.note{background:#fff0d9;border-left:5px solid #ae6b10;border-radius:9px;padding:13px 15px;margin:16px 0;font-size:.9rem}.finding{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.finding div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px}.finding b{color:var(--teal);font-size:1.25rem;display:block}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:11px;margin-top:18px}table{width:100%;border-collapse:collapse;background:#fff;font-size:.84rem}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}th{background:#e7f2ef;color:#184e4a}tr:last-child td{border-bottom:0}.sources{font-size:.84rem;color:var(--muted);margin-top:18px}.sources li{margin:5px 0}.sources a{color:#24577d}.hidden{display:none}.tooltip{position:fixed;pointer-events:none;background:#132f37;color:#fff;border-radius:8px;padding:8px 10px;font-size:.78rem;box-shadow:0 6px 20px rgba(0,0,0,.2);opacity:0;transition:opacity .1s;z-index:20;max-width:250px}.small{font-size:.8rem;color:var(--muted)}
+@media(max-width:700px){.finding{grid-template-columns:1fr}.wrap{padding:20px 10px 50px}.card{padding:8px}.legend{padding:0 8px}}
+@media print{header{padding:22px;background:#155e63!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.toolbar,.table-wrap{display:none}.card{box-shadow:none}.wrap{padding:15px}.note{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><h1>Regional serum PFAS comparison</h1><p>Reported central concentrations and available distribution intervals across a national reference, community cohorts, and highly exposed U.S. populations.</p></header>
+<main class="wrap">
+<div class="card">
+  <div class="toolbar"><div class="filters"><button class="active" data-filter="all">All regions</button><button data-filter="reference">National reference</button><button data-filter="community">Community cohorts</button><button data-filter="exposed">Highly exposed</button></div><div><button id="downloadSvg">Download SVG</button><a class="button" href="PFAS_regional_distribution_data.csv" download>Download data</a></div></div>
+  <svg id="plot" viewBox="0 0 1120 650" role="img" aria-label="Regional PFAS central concentrations and reported intervals on a logarithmic scale"></svg>
+  <div class="legend" id="legend"></div>
+  <p class="small"><strong>How to read:</strong> circles are medians; diamonds are geometric means. Vertical lines for Wilmington and Uppsala are interquartile ranges. NHANES lines extend from the geometric mean to the 95th percentile because a lower percentile was not reported in the selected clinical reference. C8 values are medians without interval information.</p>
+</div>
+<div class="note"><strong>Important limitation:</strong> this is a comparison of published cohort summaries—not a pooled individual-level distribution. Study year, age structure, recruitment, serum versus plasma matrix, assay, and exposure context differ. The log scale is necessary because the C8 PFOA median is much higher than the other central estimates.</div>
+<div class="finding"><div><b>~3.1× PFOA</b>Wilmington median versus the 2017–2018 U.S. geometric mean.</div><div><b>~5.1× PFHxS</b>Uppsala median versus the U.S. geometric mean.</div><div><b>~19× PFOA</b>C8 median versus the U.S. geometric mean.</div></div>
+<h2>Values plotted</h2><div class="table-wrap"><table><thead><tr><th>Region</th><th>Years</th><th>PFAS</th><th>Central value</th><th>Statistic</th><th>Reported interval</th><th>n</th></tr></thead><tbody id="dataRows"></tbody></table></div>
+<div class="sources"><h2>Sources</h2><ol><li><a href="https://www.atsdr.cdc.gov/pfas/hcp/clinical-overview/human-exposure.html">ATSDR/CDC NHANES 2017–2018 clinical reference</a>: geometric means and 95th percentiles.</li><li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9450637/">GenX Exposure Study, Wilmington</a>: medians and interquartile ranges, n=326.</li><li><a href="https://pubmed.ncbi.nlm.nih.gov/37019983/">POEM cohort, Uppsala</a>: medians and interquartile ranges, n=493.</li><li><a href="https://pubmed.ncbi.nlm.nih.gov/19846564/">C8 Health Project adults</a>: reported PFOA and PFOS medians, n=46,294.</li></ol></div>
+</main><div id="tooltip" class="tooltip"></div>
+<script>
+const data=[
+{region:'United States (NHANES)',group:'reference',years:'2017–2018',pfas:'PFOA',v:1.42,stat:'Geometric mean',lo:null,hi:3.77,int:'GM → 95th percentile',n:'National estimate'},
+{region:'United States (NHANES)',group:'reference',years:'2017–2018',pfas:'PFOS',v:4.25,stat:'Geometric mean',lo:null,hi:14.6,int:'GM → 95th percentile',n:'National estimate'},
+{region:'United States (NHANES)',group:'reference',years:'2017–2018',pfas:'PFHxS',v:1.08,stat:'Geometric mean',lo:null,hi:3.70,int:'GM → 95th percentile',n:'National estimate'},
+{region:'United States (NHANES)',group:'reference',years:'2017–2018',pfas:'PFNA',v:.411,stat:'Geometric mean',lo:null,hi:1.40,int:'GM → 95th percentile',n:'National estimate'},
+{region:'Wilmington, NC (GenX)',group:'community',years:'2017–2018',pfas:'PFOA',v:4.34,stat:'Median',lo:2.72,hi:6.93,int:'IQR',n:'326'},
+{region:'Wilmington, NC (GenX)',group:'community',years:'2017–2018',pfas:'PFOS',v:8.47,stat:'Median',lo:5.00,hi:13.62,int:'IQR',n:'326'},
+{region:'Wilmington, NC (GenX)',group:'community',years:'2017–2018',pfas:'PFHxS',v:3.19,stat:'Median',lo:1.80,hi:5.19,int:'IQR',n:'326'},
+{region:'Wilmington, NC (GenX)',group:'community',years:'2017–2018',pfas:'PFNA',v:1.19,stat:'Median',lo:.78,hi:1.98,int:'IQR',n:'326'},
+{region:'Uppsala, Sweden (POEM)',group:'community',years:'2010–2016',pfas:'PFOA',v:2.14,stat:'Median',lo:1.60,hi:3.00,int:'IQR',n:'493'},
+{region:'Uppsala, Sweden (POEM)',group:'community',years:'2010–2016',pfas:'PFOS',v:5.10,stat:'Median',lo:3.50,hi:7.24,int:'IQR',n:'493'},
+{region:'Uppsala, Sweden (POEM)',group:'community',years:'2010–2016',pfas:'PFHxS',v:5.50,stat:'Median',lo:2.50,hi:11.61,int:'IQR',n:'493'},
+{region:'Mid-Ohio Valley (C8)',group:'exposed',years:'2005–2006',pfas:'PFOA',v:27.0,stat:'Median',lo:null,hi:null,int:'Not reported',n:'46,294'},
+{region:'Mid-Ohio Valley (C8)',group:'exposed',years:'2005–2006',pfas:'PFOS',v:20.0,stat:'Median',lo:null,hi:null,int:'Not reported',n:'46,294'}];
+const colors={'United States (NHANES)':'#326a91','Wilmington, NC (GenX)':'#e08726','Uppsala, Sweden (POEM)':'#25855f','Mid-Ohio Valley (C8)':'#a94449'}, pfases=['PFOA','PFOS','PFHxS','PFNA'], regions=Object.keys(colors), offsets=[-42,-14,14,42];
+const svg=document.querySelector('#plot'),tip=document.querySelector('#tooltip');let current='all';
+function y(v){const top=45,bottom=560,min=Math.log10(.2),max=Math.log10(40);return bottom-(Math.log10(v)-min)/(max-min)*(bottom-top)}
+function el(name,attrs={},text=''){const e=document.createElementNS('http://www.w3.org/2000/svg',name);for(const[k,v]of Object.entries(attrs))e.setAttribute(k,v);if(text)e.textContent=text;return e}
+function render(){svg.innerHTML='';const W=1120,left=105,right=35,base=560,top=45,plotW=W-left-right;
+ const bg=el('rect',{x:left,y:top,width:plotW,height:base-top,fill:'#fbfcfb',rx:8});svg.append(bg);
+ [.2,.5,1,2,5,10,20,40].forEach(t=>{const yy=y(t);svg.append(el('line',{x1:left,y1:yy,x2:W-right,y2:yy,stroke:t===1?'#9fb4ae':'#dde7e4','stroke-width':t===1?1.5:1}));const tx=el('text',{x:left-12,y:yy+4,'text-anchor':'end',fill:'#60727a','font-size':12},t);svg.append(tx)});
+ const title=el('text',{x:20,y:25,fill:'#17252b','font-size':13,'font-weight':700},'Serum/plasma concentration (ng/mL, logarithmic scale)');svg.append(title);
+ pfases.forEach((p,i)=>{const cx=left+(i+.5)*plotW/pfases.length;svg.append(el('text',{x:cx,y:600,'text-anchor':'middle',fill:'#17252b','font-size':17,'font-weight':800},p));if(i>0)svg.append(el('line',{x1:left+i*plotW/pfases.length,y1:top,x2:left+i*plotW/pfases.length,y2:base,stroke:'#edf2f0'}))});
+ const show=data.filter(d=>current==='all'||d.group===current||(current==='community'&&d.group==='community'));
+ show.forEach(d=>{const i=pfases.indexOf(d.pfas),ri=regions.indexOf(d.region),cx=left+(i+.5)*plotW/pfases.length+offsets[ri],cy=y(d.v),c=colors[d.region];if(d.hi){const low=d.lo??d.v;svg.append(el('line',{x1:cx,y1:y(low),x2:cx,y2:y(d.hi),stroke:c,'stroke-width':5,'stroke-linecap':'round',opacity:.75}));svg.append(el('line',{x1:cx-7,y1:y(d.hi),x2:cx+7,y2:y(d.hi),stroke:c,'stroke-width':2}));if(d.lo)svg.append(el('line',{x1:cx-7,y1:y(d.lo),x2:cx+7,y2:y(d.lo),stroke:c,'stroke-width':2}))}
+  const mark=d.stat==='Geometric mean'?el('path',{d:`M ${cx} ${cy-8} L ${cx+8} ${cy} L ${cx} ${cy+8} L ${cx-8} ${cy} Z`,fill:c,stroke:'#fff','stroke-width':2}):el('circle',{cx,cy,r:8,fill:c,stroke:'#fff','stroke-width':2});mark.style.cursor='pointer';mark.addEventListener('mousemove',e=>{tip.innerHTML=`<strong>${d.region}</strong><br>${d.pfas}: ${d.v} ng/mL (${d.stat})<br>${d.int}${d.lo?`: ${d.lo}–${d.hi} ng/mL`:d.hi?`: upper ${d.hi} ng/mL`:''}<br>Years: ${d.years}; n: ${d.n}`;tip.style.left=e.clientX+14+'px';tip.style.top=e.clientY+14+'px';tip.style.opacity=1});mark.addEventListener('mouseleave',()=>tip.style.opacity=0);svg.append(mark)});
+ svg.append(el('line',{x1:left,y1:base,x2:W-right,y2:base,stroke:'#6e817b','stroke-width':1.5}));svg.append(el('line',{x1:left,y1:top,x2:left,y2:base,stroke:'#6e817b','stroke-width':1.5}));
+}
+document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');current=b.dataset.filter;render()});
+document.querySelector('#legend').innerHTML=regions.map(r=>`<span><i class="swatch" style="background:${colors[r]}"></i>${r}</span>`).join('');
+document.querySelector('#dataRows').innerHTML=data.map(d=>`<tr><td>${d.region}</td><td>${d.years}</td><td>${d.pfas}</td><td>${d.v} ng/mL</td><td>${d.stat}</td><td>${d.lo?d.lo+'–'+d.hi+' ng/mL IQR':d.hi?'Upper 95th: '+d.hi+' ng/mL':'Not reported'}</td><td>${d.n}</td></tr>`).join('');
+document.querySelector('#downloadSvg').onclick=()=>{const clone=svg.cloneNode(true);clone.setAttribute('xmlns','http://www.w3.org/2000/svg');const style=document.createElementNS('http://www.w3.org/2000/svg','style');style.textContent='text{font-family:Arial,sans-serif}';clone.prepend(style);const blob=new Blob([new XMLSerializer().serializeToString(clone)],{type:'image/svg+xml'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='PFAS_regional_distribution_plot.svg';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)};
+render();
+</script>
+</body></html>

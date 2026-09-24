@@ -1,0 +1,14 @@
+region,region_type,years,population,pfas,central_ng_ml,central_stat,lower_ng_ml,upper_ng_ml,interval_type,n,source
+United States (NHANES),National reference,2017-2018,General U.S. population,PFOA,1.42,Geometric mean,,3.77,95th percentile,,https://www.atsdr.cdc.gov/pfas/hcp/clinical-overview/human-exposure.html
+United States (NHANES),National reference,2017-2018,General U.S. population,PFOS,4.25,Geometric mean,,14.6,95th percentile,,https://www.atsdr.cdc.gov/pfas/hcp/clinical-overview/human-exposure.html
+United States (NHANES),National reference,2017-2018,General U.S. population,PFHxS,1.08,Geometric mean,,3.70,95th percentile,,https://www.atsdr.cdc.gov/pfas/hcp/clinical-overview/human-exposure.html
+United States (NHANES),National reference,2017-2018,General U.S. population,PFNA,0.411,Geometric mean,,1.40,95th percentile,,https://www.atsdr.cdc.gov/pfas/hcp/clinical-overview/human-exposure.html
+Wilmington NC (GenX),Exposed community,2017-2018,326 participants with PFAS and cholesterol,PFOA,4.34,Median,2.72,6.93,IQR,326,https://pmc.ncbi.nlm.nih.gov/articles/PMC9450637/
+Wilmington NC (GenX),Exposed community,2017-2018,326 participants with PFAS and cholesterol,PFOS,8.47,Median,5.00,13.62,IQR,326,https://pmc.ncbi.nlm.nih.gov/articles/PMC9450637/
+Wilmington NC (GenX),Exposed community,2017-2018,326 participants with PFAS and cholesterol,PFHxS,3.19,Median,1.80,5.19,IQR,326,https://pmc.ncbi.nlm.nih.gov/articles/PMC9450637/
+Wilmington NC (GenX),Exposed community,2017-2018,326 participants with PFAS and cholesterol,PFNA,1.19,Median,0.78,1.98,IQR,326,https://pmc.ncbi.nlm.nih.gov/articles/PMC9450637/
+Uppsala Sweden (POEM),Community cohort,2010-2016,Adults age 50,PFOA,2.14,Median,1.60,3.00,IQR,493,https://pubmed.ncbi.nlm.nih.gov/37019983/
+Uppsala Sweden (POEM),Community cohort,2010-2016,Adults age 50,PFOS,5.10,Median,3.50,7.24,IQR,493,https://pubmed.ncbi.nlm.nih.gov/37019983/
+Uppsala Sweden (POEM),Community cohort,2010-2016,Adults age 50,PFHxS,5.50,Median,2.50,11.61,IQR,493,https://pubmed.ncbi.nlm.nih.gov/37019983/
+Mid-Ohio Valley (C8),Highly exposed community,2005-2006,Adults near chemical plant,PFOA,27.0,Median,,,Not reported,46294,https://pubmed.ncbi.nlm.nih.gov/19846564/
+Mid-Ohio Valley (C8),Highly exposed community,2005-2006,Adults near chemical plant,PFOS,20.0,Median,,,Not reported,46294,https://pubmed.ncbi.nlm.nih.gov/19846564/

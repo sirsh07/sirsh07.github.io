@@ -1,4 +1,4 @@
-# PFAS Dataset Explorer
+# PFAS & Heavy-Metal Dataset Explorer
 
 Open `index.html` directly in a browser, or serve the workspace locally:
 
@@ -13,10 +13,10 @@ The application is a static HTML/CSS/JavaScript dashboard. It does not require a
 Features:
 
 - world and United States map views;
-- filters for human/environmental datasets and access status;
+- filters for PFAS/heavy-metal exposure groups, human/environmental datasets, and three access-status levels;
 - searchable, sortable dataset cards;
 - participant/record counts displayed using compatible units;
-- detailed PFAS coverage, outcomes, conclusions, limitations and source links;
+- detailed chemical coverage, outcomes, conclusions, limitations and source links;
 - shareable URL state for the selected dataset and main filters.
 
 ## Local map assets
